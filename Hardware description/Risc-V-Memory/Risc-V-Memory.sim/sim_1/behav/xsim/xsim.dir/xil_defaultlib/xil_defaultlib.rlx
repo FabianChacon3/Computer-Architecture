@@ -1,0 +1,8 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+C:/Users/Usuario/parafabian/Risc-V-Memory/Risc-V-Memory.sim/sim_1/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
+C:/Users/Usuario/parafabian/Risc-V-Memory/Risc-V-Memory.srcs/sim_1/new/estimulos_memory.v,1757567775,verilog,,,,tb_memory,,,,,,,,
+C:/Users/Usuario/parafabian/Risc-V-Memory/Risc-V-Memory.srcs/sources_1/new/My_memory.v,1757430040,verilog,,C:/Users/Usuario/parafabian/Risc-V-Memory/Risc-V-Memory.srcs/sim_1/new/estimulos_memory.v,,My_memory,,,,,,,,
+C:/Users/Usuario/parafabian/Risc-V-Memory/Risc-V-Memory.srcs/sources_1/new/My_memory_n32.v,1757568095,verilog,,C:/Users/Usuario/parafabian/Risc-V-Memory/Risc-V-Memory.srcs/sim_1/new/estimulos_memory.v,,My_memory_n8,,,,,,,,
