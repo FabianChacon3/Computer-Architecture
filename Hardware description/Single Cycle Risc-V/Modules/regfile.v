@@ -16,7 +16,7 @@ module regfile (
 
     // Escritura síncrona (en flanco positivo del reloj)
     always @(posedge clk) begin
-        if (WE3 && A3 != 0)        // opcional: evitar escribir en R0
+        if (WE3)        // opcional: evitar escribir en R0
             regs[A3] <= WD3;
     end
 
