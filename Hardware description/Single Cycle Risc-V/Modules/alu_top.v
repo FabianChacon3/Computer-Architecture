@@ -2,9 +2,8 @@
 module alu_top (
     input  wire [31:0] A,
     input  wire [31:0] B,
-    input  wire [4:0]  shamt,
     input  wire [2:0]  funct3,
-    input  wire [6:0]  funct7,
+    input  wire  funct7_5,
     input  wire [2:0]  ALUControl,
     output wire [31:0] Result
 );
@@ -18,10 +17,10 @@ module alu_top (
 
     // SHIFT
     shifter_top shft (
-        .in(B),
-        .shamt(shamt),
+        .in(A),
+        .shamt(B[4:0]),
         .funct3(funct3),
-        .funct7(funct7),
+        .funct7(funct7_5),
         .out(shift_res)
     );
     or32 or_inst(
@@ -44,7 +43,7 @@ module alu_top (
         .A(A),
         .B(B),
         .funct3(funct3),
-        .funct7(funct7),
+        .funct7(funct7_5),
         .result(comp_res)
     );
 
