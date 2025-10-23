@@ -1,9 +1,11 @@
 `timescale 1ns / 1ps
 module ImmExt (
-    input  [31:0] instr,
+    input  [31:7] instr,
+    input         instr_4, // Bit 4 por separado
     input  [1:0]  ImmSrc,
     output reg [31:0] imm_ext
 );
+
 
 always @(*) begin
     case (ImmSrc)
@@ -17,7 +19,7 @@ always @(*) begin
         // Diferenciamos con bit4 del opcode (instr[6:0][4])
         // -----------------------------
         2'b01: begin
-            if (instr[4] == 1'b0) begin
+            if (instr_4 == 1'b0) begin
                 // S-type: imm = sign-extend({instr[31:25], instr[11:7]})
                 imm_ext = {{20{instr[31]}}, instr[31:25], instr[11:7]};
             end else begin
@@ -44,4 +46,5 @@ always @(*) begin
 end
 
 endmodule
+
 

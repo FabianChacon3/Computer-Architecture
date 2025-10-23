@@ -7,3 +7,4 @@ module or1 (
     assign y = |a;   // operador de reducción OR
 endmodule
 
+

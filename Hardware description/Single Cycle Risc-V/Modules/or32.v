@@ -6,3 +6,4 @@ module or32 (
 );
     assign y = a | b;
 endmodule
+

@@ -7,21 +7,29 @@ module alu_top (
     input  wire [2:0]  ALUControl,
     output wire [31:0] Result
 );
-    wire [31:0] add_res, sub_res, and_res, or_res, xor_res, shift_res, comp_res;
+    wire [31:0] add_res, sub_res, and_res, or_res, xor_res, shift_res, comp_res, Bmux, sum1;
 
-    // ADD / SUB
-    assign add_res = A + B;
-    assign sub_res = A - B;
+    assign sum1 = ~B + 32'b1;
+
+    mux2_1 mxinst(
+        .a(B),
+        .b(sum1),
+        .sel(ALUControl[0]),
+        .y(Bmux)
+    );
+   // ADD / SUB
+    assign add_res = A + Bmux;
+    assign sub_res = add_res; 
 
     // LÓGICAS
-
+    
     // SHIFT
     shifter_top shft (
-        .in(A),
+        .A(A),
         .shamt(B[4:0]),
-        .funct3(funct3),
+        .funct3_2(funct3[2]),
         .funct7(funct7_5),
-        .out(shift_res)
+        .outshift(shift_res)
     );
     or32 or_inst(
     .a(A),
@@ -40,10 +48,8 @@ module alu_top (
     );    
     // ZERO EXTEND COMP
     zero_extend_comp zext_cmp (
-        .A(A),
-        .B(B),
-        .funct3(funct3),
-        .funct7(funct7_5),
+        .diff(add_res),
+        .funct3(funct3[2:0]),
         .result(comp_res)
     );
 
@@ -54,12 +60,11 @@ module alu_top (
         .in2(and_res),
         .in3(or_res),
         .in4(xor_res),
-        .in5(shift_res),
-        .in6(comp_res),
-        .in7(32'b0),
+        .in5(comp_res),
+        .in6(shift_res),
+        .in7(shift_res) ,
         .sel(ALUControl),
         .y(Result)
     );
 
 endmodule
-

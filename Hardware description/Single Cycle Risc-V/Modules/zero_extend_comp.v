@@ -1,20 +1,13 @@
 `timescale 1ns / 1ps
-module zero_extend_comp (
-    input  wire [31:0] A,
-    input  wire [31:0] B,
-    input  wire [2:0]  funct3,
-    input  wire [6:0]  funct7,
+module zero_extend_comp(
+    input  wire [31:0] diff,
+    input  wire [2 :0] funct3,
     output wire [31:0] result
 );
 
-    wire [31:0] diff;
-    wire zero_flag;     // 1 si A == B
-    wire sign_A, sign_B;
-    wire less, greater, not_equal, equal, geq, leq;
+    wire less, not_equal, equal, geq, slt;
 
-    assign diff = A - B;
-    assign sign_A = A[31];
-    assign sign_B = B[31];
+    assign slt = diff[31];
 
     // OR 32?1 (ya la tienes implementada)
     wire or_out;
@@ -26,22 +19,21 @@ module zero_extend_comp (
     assign equal     = ~or_out;
     assign not_equal = or_out;
 
-    assign less      = (sign_A & ~sign_B) | ((~(sign_A ^ sign_B)) & diff[31]);
-    assign greater   = (~sign_A & sign_B) | ((~(sign_A ^ sign_B)) & ~diff[31]);
-    assign geq       = greater | equal;
-    assign leq       = less | equal;
+    assign less      = slt;
+    assign geq       = ~slt;
 
     reg [31:0] comp_result;
     always @(*) begin
         case (funct3)
-            3'b000: comp_result = {31'b0, geq};      // >=
+            3'b000: comp_result = {31'b0, equal};     // >=
             3'b001: comp_result = {31'b0, not_equal}; // !=
-            3'b101: comp_result = {31'b0, greater};   // >
             3'b100: comp_result = {31'b0, less};      // <
-            default: comp_result = {31'b0, leq};      // <= u otro caso
+            3'b101: comp_result = {31'b0, geq};       // >=
+            default: comp_result = 32'b0;       //cualquier cosa
         endcase
     end
 
     assign result = comp_result;
 
 endmodule
+

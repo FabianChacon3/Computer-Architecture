@@ -7,4 +7,3 @@ module xor32 (
 );
     assign y = a ^ b;
 endmodule
-

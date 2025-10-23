@@ -48,3 +48,4 @@ module Control_Unit(
     assign PCSrc = Branch & Zero;
 
 endmodule
+
