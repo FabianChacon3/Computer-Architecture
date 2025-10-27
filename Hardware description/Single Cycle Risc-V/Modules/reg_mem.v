@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module regfile (
+module reg_mem (
     input  wire        clk,
     input  wire        WE,
     input  wire [4:0]  A1, A2, A3,
@@ -10,7 +10,7 @@ module regfile (
     // 32 registros de 32 bits (reg[31:0] r[0:31])
     reg [31:0] r [31:0];
 
-    // Escritura sincrónica
+    // Escritura sincrï¿½nica
     always @(posedge clk) begin
         if (WE && (A3 != 5'd0))
             r[A3] <= WD3;

@@ -5,9 +5,12 @@ module alu_top (
     input  wire [2:0]  funct3,
     input  wire  funct7_5,
     input  wire [2:0]  ALUControl,
-    output wire [31:0] Result
+    output wire [31:0] Result,
+    output wire Zero
 );
     wire [31:0] add_res, sub_res, and_res, or_res, xor_res, shift_res, comp_res, Bmux, sum1;
+
+    assign Zero = Result[0];
 
     assign sum1 = ~B + 32'b1;
 
@@ -21,7 +24,7 @@ module alu_top (
     assign add_res = A + Bmux;
     assign sub_res = add_res; 
 
-    // LÓGICAS
+    // Lï¿½GICAS
     
     // SHIFT
     shifter_top shft (

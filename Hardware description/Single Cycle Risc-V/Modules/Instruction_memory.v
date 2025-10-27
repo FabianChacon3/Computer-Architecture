@@ -14,7 +14,7 @@ module Instruction_memory(
     My_memory my_ram0 (
         .clk(clk),
         .WE(WE),
-        .A(As), // Usamos la nueva señal A_shifted
+        .A(As), // Usamos la nueva seï¿½al A_shifted
         .WD(WD[7:0]),
         .RD(RD[7:0])
     );
@@ -22,7 +22,7 @@ module Instruction_memory(
     My_memory my_ram1 (
         .clk(clk),
         .WE(WE),
-        .A(As), // Usamos la nueva señal A_shifted
+        .A(As), // Usamos la nueva seï¿½al A_shifted
         .WD(WD[15:8]),
         .RD(RD[15:8])
     );
@@ -30,7 +30,7 @@ module Instruction_memory(
     My_memory my_ram2 (
         .clk(clk),
         .WE(WE),
-        .A(As), // Usamos la nueva señal A_shifted
+        .A(As), // Usamos la nueva seï¿½al A_shifted
         .WD(WD[23:16]),
         .RD(RD[23:16])
     );
@@ -38,7 +38,7 @@ module Instruction_memory(
     My_memory my_ram3 (
         .clk(clk),
         .WE(WE),
-        .A(As), // Usamos la nueva señal A_shifted
+        .A(As), // Usamos la nueva seï¿½al A_shifted
         .WD(WD[31:24]),
         .RD(RD[31:24])
     );
