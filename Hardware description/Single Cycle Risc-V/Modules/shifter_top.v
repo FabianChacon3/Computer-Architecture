@@ -7,7 +7,7 @@ module shifter_top (
     input  wire funct7,      // bit[5] distingue SRA de SRL
     output wire [31:0] outshift
 );
-    wire dir  = funct3_2;          // 0=izquierda, 1=derecha
+
     wire arith = funct7;         // activa sign extend en SRA
     wire fill  = arith ? A[31] : 1'b0; // bit de relleno (signo o 0)
 	

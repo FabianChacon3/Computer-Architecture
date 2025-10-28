@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 module Data_memory #(
-    parameter N = 20,         // número de bits para dirección (2^N posiciones)
-    parameter M = 32         // número de bits por palabra
+    parameter N = 10,         // nï¿½mero de bits para direcciï¿½n (2^N posiciones)
+    parameter M = 32         // nï¿½mero de bits por palabra
 )(
     input clk,
     input WE,
@@ -19,7 +19,7 @@ module Data_memory #(
 //     $readmemh("program2.mem", my_mem);
 // end
 
-    // Escritura síncrona / lectura síncrona
+    // Escritura sï¿½ncrona / lectura sï¿½ncrona
     always @(posedge clk) begin
         if (WE)
             my_mem[A] <= WD;  // escritura

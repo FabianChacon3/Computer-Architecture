@@ -5,7 +5,8 @@ module RV32I(
     input clk,
     input WE_i_mem,
     input [31:0] WD_i_mem,
-    input Reset
+    input Reset,
+    output reg [31:0] RESULT
     );
     
     reg [31:0] PC;
@@ -101,7 +102,7 @@ module RV32I(
     Data_memory DataMem(
         .clk(clk),           
         .WE(MemWrite),            
-        .A(ALUResult),  
+        .A(ALUResult[9:0]),  
         .WD(RD2_reg), 
         .RD(ReadData)
     );
@@ -126,8 +127,7 @@ module RV32I(
     assign jumper = ImmSrc[0] ? PC : RD1_reg;
     
     assign PCTarget = Immextend + jumper;
-    
-    reg [31:0] RESULT;
+   
     
     always @(*) begin
         case (ResultSrc)

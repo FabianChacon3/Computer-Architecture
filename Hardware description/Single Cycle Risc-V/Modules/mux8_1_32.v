@@ -18,8 +18,9 @@ module mux8_1_32 (
             3'b010: y = in2; // and
             3'b011: y = in3; // or
             3'b100: y = in4; // xor
-            3'b101: y = in5; // shift
-            3'b110: y = in6; // zero extend comparator
+            3'b101: y = in5; // zero extend comparator
+            3'b110: y = in6; // shift
+            3'b111: y = in7; // shift
             default: y = 32'b0;
         endcase
     end
