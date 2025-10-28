@@ -2,14 +2,10 @@
 
 module Instruction_memory(
     input clk, WE,
-    input [9:0] A,
+    input [9:0] As,
     input [31:0] WD,
     output wire [31:0] RD
 );
-    
-    wire [9:0] As;
-
-    assign As = A >> 2;
 
     My_memory my_ram0 (
         .clk(clk),

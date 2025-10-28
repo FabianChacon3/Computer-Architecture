@@ -15,7 +15,7 @@ module RV32I(
     Instruction_memory ins_mem(
         .clk(clk),
         .WE(WE_i_mem),
-        .A(PC[9:0]),
+        .As(PC[11:2]),
         .WD(WD_i_mem),
         .RD(instr)
     );
