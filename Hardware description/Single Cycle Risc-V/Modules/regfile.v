@@ -1,4 +1,5 @@
-// regfile: lecturas síncronas (salidas registradas)
+// regfile: lecturas sï¿½ncronas (salidas registradas)
+// Fabian Gay
 module regfile (
     input  wire        clk,
     input  wire        WE,
@@ -10,13 +11,13 @@ module regfile (
     integer i;
     initial for (i=0; i<32; i=i+1) r[i] = 32'b0;
 
-    // Escritura síncrona (no escribir r0)
+    // Escritura sï¿½ncrona (no escribir r0)
     always @(posedge clk) begin
         if (WE && (A3 != 5'd0))
             r[A3] <= WD3;
     end
 
-    // Lectura síncrona: muestreamos direcciones en flanco
+    // Lectura sï¿½ncrona: muestreamos direcciones en flanco
     reg [31:0] rd1_reg, rd2_reg;
     always @(posedge clk) begin
         rd1_reg <= (A1 == 5'd0) ? 32'b0 : r[A1];
