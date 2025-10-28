@@ -1,5 +1,4 @@
 // regfile: lecturas s�ncronas (salidas registradas)
-// Fabian Gay
 module regfile (
     input  wire        clk,
     input  wire        WE,

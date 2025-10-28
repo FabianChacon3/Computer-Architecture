@@ -5,8 +5,7 @@ module RV32I(
     input clk,
     input WE_i_mem,
     input [31:0] WD_i_mem,
-    input Reset,
-    output [31:0] RESULT
+    input Reset
     );
     
     reg [31:0] PC;
