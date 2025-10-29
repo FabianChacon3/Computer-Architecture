@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-
+(* keep_hierarchy = "yes" *)
 module RV32I(
     input clk,
     input WE_i_mem,

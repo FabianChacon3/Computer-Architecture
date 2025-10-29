@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+(* keep_hierarchy = "yes" *)
 module Control_Unit(
     input  [6:0] op,         // Opcode
     input  [2:0] funct3,     // Campo funct3
@@ -10,11 +11,11 @@ module Control_Unit(
     output       ALUSrc,
     output       MemWrite,
     output [1:0] ResultSrc,
-    output       PCSrc,      // Señal para seleccionar PC siguiente
-    output [2:0] ALUControl  // Señal de control hacia la ALU
+    output       PCSrc,      // Seï¿½al para seleccionar PC siguiente
+    output [2:0] ALUControl  // Seï¿½al de control hacia la ALU
 );
 
-    // Señal interna entre los decoders
+    // Seï¿½al interna entre los decoders
     wire [1:0] ALUOp;
     wire       Branch;
 
@@ -43,7 +44,7 @@ module Control_Unit(
     );
 
     // =============================
-    // Lógica de PCSrc
+    // Lï¿½gica de PCSrc
     // =============================
     assign PCSrc = Branch & Zero;
 

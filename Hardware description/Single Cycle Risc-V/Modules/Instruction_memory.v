@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+(* keep_hierarchy = "yes" *)
 module Instruction_memory(
     input clk, WE,
     input [9:0] As,

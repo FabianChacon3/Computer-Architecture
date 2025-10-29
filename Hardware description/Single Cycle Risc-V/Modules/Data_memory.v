@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+(* keep_hierarchy = "yes" *)
 module Data_memory #(
     parameter N = 10,         // n�mero de bits para direcci�n (2^N posiciones)
     parameter M = 32         // n�mero de bits por palabra

@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+(* keep_hierarchy = "yes" *)
 module alu_top (
     input  wire [31:0] A,
     input  wire [31:0] B,

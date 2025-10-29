@@ -1,4 +1,6 @@
+`timescale 1ns / 1ps
 // regfile: lecturas s�ncronas (salidas registradas)
+(* keep_hierarchy = "yes" *)
 module regfile (
     input  wire        clk,
     input  wire        WE,
