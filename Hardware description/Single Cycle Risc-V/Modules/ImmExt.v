@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+(* keep_hierarchy = "yes" *)
 module ImmExt (
     input  [31:7] instr,
     input         instr_4, // Bit 4 por separado

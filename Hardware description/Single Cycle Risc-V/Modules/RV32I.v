@@ -10,6 +10,7 @@ module RV32I(
     );
     
     reg [31:0] PC;
+    wire [31:0] instr0;
     wire [31:0] instr;
     
     Instruction_memory ins_mem(
@@ -17,8 +18,10 @@ module RV32I(
         .WE(WE_i_mem),
         .As(PC[11:2]),
         .WD(WD_i_mem),
-        .RD(instr)
+        .RD(instr0)
     );
+    
+    assign instr = WE_i_mem ? 32'd0 : instr0;
     
     wire [6:0] op;
     wire [2:0] funct3;
