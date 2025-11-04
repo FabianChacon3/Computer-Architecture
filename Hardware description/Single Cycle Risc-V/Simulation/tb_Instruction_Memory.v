@@ -8,17 +8,17 @@ module tb_Instruction_Memory;
    wire [31:0] RD;
    integer i;
 
-   // Instancia del módulo principal
+   // Instancia del mï¿½dulo principal
    Instruction_memory uut (
       .clk(clk),
       .WE(WE),
-      .A(A),
+      .As(A),
       .WD(WD),
       .RD(RD)
    );
 
    // Instrucciones a cargar
-   reg [31:0] instructions [0:16];
+   reg [31:0] instructions [0:5];
 
    // Generar reloj
    always #5 clk = ~clk;
@@ -38,24 +38,13 @@ module tb_Instruction_Memory;
       instructions[3]  = 32'h40e00593;
       instructions[4]  = 32'h000006b3;
       instructions[5]  = 32'h04b50863;
-      instructions[6]  = 32'h00150613;
-      instructions[7]  = 32'h00050e03;
-      instructions[8]  = 32'h00060e83;
-      instructions[9]  = 32'h03ce0d63;
-      instructions[10] = 32'h01c60023;
-      instructions[11] = 32'h01d50023;
-      instructions[12] = 32'h00561593;
-      instructions[13] = 32'h00551513;
-      instructions[14] = 32'hffb9f06f;
-      instructions[15] = 32'hf8069de3;
-      instructions[16] = 32'h00008067;
 
       // ===================================================
       // Escribir las instrucciones en la memoria
       // ===================================================
       WE = 1;
-      for (i = 0; i < 17; i = i + 1) begin
-         A  = i << 2;         // dirección en bytes
+      for (i = 0; i < 6; i = i + 1) begin
+         A  = i << 2;         // direcciï¿½n en bytes
          WD = instructions[i];
          #10;                 // pulso de reloj
       end
@@ -70,12 +59,12 @@ module tb_Instruction_Memory;
       $display("  Addr | PC(Dec) |   Instruction (Hex)   |          (Bin)           ");
       $display("--------------------------------------------------------------------------");
 
-      for (i = 0; i < 17; i = i + 1) begin
+      for (i = 0; i < 6; i = i + 1) begin
          A = i << 2;
          #10;
          $display("  %02d   |  %04d   |   %08h   |  %032b", i, A, RD, RD);
       end
-
+      #10;
       $display("===========================================================================");
       $stop;
    end
