@@ -1,6 +1,6 @@
 # RISC-V RV32I Microarchitecture (Verilog)
 
-![RISC-V Logo](images/logos/risc-v3-1.jpg)
+![RISC-V Logo](images/LOGOS/risc-v3-1.jpg)
 
 **Project Goal:**
 - Implement a functional RV32I RISC-V CPU in Verilog, validate it with simulation, and then synthesize and implement it on an FPGA (Vivado). Start with a single-cycle (monocycle) implementation; once stable, evolve the design into a pipelined version and extend instruction coverage beyond I-type instructions.
