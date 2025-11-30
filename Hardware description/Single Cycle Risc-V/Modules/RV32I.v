@@ -1,27 +1,28 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-(* keep_hierarchy = "yes" *)
+
 module RV32I(
     input clk,
-    input WE_i_mem,
-    input [31:0] WD_i_mem,
+    input WE_mem,
+    input [31:0] WD_mem,
     input Reset,
+    input Write,
     output reg [31:0] RESULT
     );
     
-    reg [31:0] PC;
-    wire [31:0] instr0;
+    reg [9:0] PC;
+    wire [31:0] instrR;
     wire [31:0] instr;
     
     Instruction_memory ins_mem(
         .clk(clk),
-        .WE(WE_i_mem),
-        .As(PC[11:2]),
-        .WD(WD_i_mem),
-        .RD(instr0)
+        .WE(WE_mem),
+        .A(PC[9:0]),
+        .WD(WD_mem),
+        .RD(instrR)
     );
     
-    assign instr = WE_i_mem ? 32'd0 : instr0;
+    assign instr = Write ? 1'b0 : instrR;
     
     wire [6:0] op;
     wire [2:0] funct3;
@@ -111,11 +112,12 @@ module RV32I(
     );
     
     //Contador del programa
-    wire [31:0] PCPlus4;
-    assign PCPlus4 = PC + 32'd4;
+    wire [9:0] PCPlus4;
+    assign PCPlus4 = PC + 10'd4;
     
-    wire [31:0] PCNext, PCTarget;
-    assign PCNext = PCSrc ? PCTarget : PCPlus4;
+    assign PCSrcR = Write ? 1'b0 : PCSrc;
+    wire [9:0] PCNext, PCTarget;
+    assign PCNext = PCSrcR ? PCTarget : PCPlus4;
     
     //Registro contador
     always @(posedge clk or posedge Reset) begin
@@ -126,10 +128,10 @@ module RV32I(
     end
     
     //selector de salto
-    wire [31:0] jumper;
-    assign jumper = ImmSrc[0] ? PC : RD1_reg;
+    wire [9:0] jumper;
+    assign jumper = ImmSrc[0] ? PC : RD1_reg[9:0];
     
-    assign PCTarget = Immextend + jumper;
+    assign PCTarget = Immextend[9:0] + jumper;
    
     
     always @(*) begin
